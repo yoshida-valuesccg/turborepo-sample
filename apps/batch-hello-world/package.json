@@ -1,0 +1,20 @@
+{
+    "name": "@repo/hello-world",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "vite build",
+        "check-types": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@repo/services": "*"
+    },
+    "devDependencies": {
+        "@repo/env-plugin": "*",
+        "@repo/runtime-package-plugin": "*",
+        "@repo/typescript-config": "*",
+        "@types/aws-lambda": "^8.10.146"
+    }
+}

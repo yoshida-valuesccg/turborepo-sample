@@ -1,0 +1,25 @@
+FROM node:22 AS builder
+
+WORKDIR /usr/app
+
+COPY . .
+
+RUN npm i -g turbo
+RUN turbo prune @repo/hello-world
+RUN cp ./.env.production ./out
+
+WORKDIR /usr/app/out
+
+RUN npm i
+RUN npm run build
+
+FROM public.ecr.aws/lambda/nodejs:22 AS runtime
+
+ENV TZ=Asia/Tokyo
+
+COPY --from=builder /usr/app/out/apps/batch-hello-world/dist/ ./
+COPY --from=builder /usr/app/out/apps/batch-hello-world/package.runtime.json ./package.json
+
+RUN npm i --omit=dev
+
+CMD ["index.handler"]

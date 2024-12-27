@@ -1,0 +1,16 @@
+{
+    "name": "@repo/ui",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "check-types": "tsc --noEmit"
+    },
+    "exports": {
+        "./Button": "./src/Button.tsx"
+    },
+    "dependencies": {
+        "solid-js": "^1.9.3"
+    }
+}

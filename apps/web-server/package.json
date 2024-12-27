@@ -1,0 +1,32 @@
+{
+    "name": "@repo/web-server",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "tsx ./scripts/dev.ts",
+        "build": "vite build",
+        "check-types": "tsc --noEmit"
+    },
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "dependencies": {
+        "@fastify/cookie": "^11.0.1",
+        "@fastify/static": "^8.0.3",
+        "@repo/services": "*",
+        "@trpc/server": "^10.45.2",
+        "dayjs": "^1.11.13",
+        "fastify": "^5.2.0",
+        "zod": "^3.24.1"
+    },
+    "devDependencies": {
+        "@repo/env-plugin": "*",
+        "@repo/runtime-package-plugin": "*",
+        "@repo/typescript-config": "*",
+        "tsx": "^4.19.2",
+        "vite": "^6.0.6",
+        "vitest": "^2.1.8"
+    }
+}

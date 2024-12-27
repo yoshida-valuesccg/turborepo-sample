@@ -1,0 +1,4 @@
+{
+    "extends": "@repo/typescript-config/solidjs.json",
+    "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+}

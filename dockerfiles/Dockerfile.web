@@ -1,0 +1,32 @@
+FROM node:22 AS builder
+
+WORKDIR /usr/app
+
+COPY . .
+
+RUN npm i -g turbo
+RUN turbo prune @repo/client @repo/server
+RUN cp ./.env.production ./out
+
+WORKDIR /usr/app/out
+
+RUN npm i
+RUN npm run build
+
+FROM node:22 AS runtime
+
+WORKDIR /usr/app
+
+ENV TZ=Asia/Tokyo
+
+EXPOSE 80
+
+RUN mkdir ./public
+COPY --from=builder /usr/app/out/apps/web-client/dist/ ./public/
+
+COPY --from=builder /usr/app/out/apps/web-server/dist/ ./
+COPY --from=builder /usr/app/out/apps/web-server/package.runtime.json ./package.json
+
+RUN npm i --omit=dev
+
+CMD ["node", "index.js"]

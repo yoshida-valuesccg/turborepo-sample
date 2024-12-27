@@ -1,0 +1,19 @@
+{
+    "name": "@repo/shared",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "check-types": "tsc --noEmit"
+    },
+    "exports": {
+        "./user": "./src/user/index.ts"
+    },
+    "dependencies": {
+        "dayjs": "^1.11.13"
+    },
+    "devDependencies": {
+        "@repo/typescript-config": "*"
+    }
+}
